@@ -7,8 +7,10 @@ const nodemailer = require('nodemailer'); //import nodemailer to send mails to v
 const transporter = nodemailer.createTransport({ //transporter bnaya using nodemailer 
   service: 'gmail',
   auth: {
-    user: 'psrathor16072000@gmail.com',
-    pass: 'Piyush*123'
+    // user: 'psrathor16072000@gmail.com',
+    // pass: 'Piyush*123'
+      user: 'abhineetbbk2016@gmail.com',
+      pass: 'Abhineetbbk'
   }
 });
 
@@ -31,11 +33,11 @@ exports.postSignUp = (req, res, next) => {
         return res.send("<h1>You Have allready Account</h1>")
       }
       var mailOptions = {
-        from: 'psrathor16072000@gmail.com',
+        from: 'abhineetbbk2016@gmail.com',
         to: email,
         subject: 'Sending Email Using Gmail',
-        html: `<p>hey dude</p>
-            <h4>You Gonna SignIn On ChatBox....</h4>
+        html: `<p>Hey Dude<br>Thanks for Sign Up</p>
+            <h4>You Gonna Sign in On ChatBox....</h4>
             <p>Your OTP is </p>
             <h1>${val}</h1>`
       }

@@ -468,6 +468,7 @@ function testimage(URL, e) {
             return false;
     };
     tester.src = URL;
+    return true;
 }
 
 // search Event Handing 
@@ -487,10 +488,12 @@ $('#searchEvent').on('keyup', function (){
                 //success
                 $('#searchLoadingState').hide();
                 $('#searchResults').html('');
+                
                 result.forEach(res =>{
                     if(!testimage(res.imageUrl, null)){
                         res.imageUrl = 'images/profile.png';
                     }
+
                     let text = 
                         `<li class="d-flex mb-2">
                         <img src="/${res.imageUrl}" alt="avatar"
