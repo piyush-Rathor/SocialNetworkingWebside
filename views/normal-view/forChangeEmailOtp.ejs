@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged In</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body style="background-color:#eeeeee;">
+    <h1 style="text-align: center; margin-top:50px;" >You Wanna Change Your email </h1>
+    <h3 style="text-align: center;">Enter OTP</h3>
+    <form action="/ConfirmOTPforChangeEmail" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="form-group">
+            <h2 class="h2">Enter Your OTP</h2>
+            <input type="number" min="0000" max="9999" class="input"  name="userOtp" id="optByUserforChangeEmail" minlength="4" maxlength="4" autocomplete="off"/>
+        </div>
+        <span style="font-family: bolt; font-size: 16px; Color: red;align-self: center;" class="span" > </span>
+        <input type="hidden" name="otp" value="<%=otp%>">
+        <input type="hidden" name="userId" value="<%=userId%>">
+        <input type="hidden" name="userNewEmail" value="<%=email%>">
+        <button type="submit" class="submit-btn">Register</button>
+    </form>
+</body>
+</html>

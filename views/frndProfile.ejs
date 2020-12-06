@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/mdb.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/chat.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+    <title>Profile</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-3">
+        <!-- Card Dashboard-->
+        <div class="card testimonial-card mb-1">
+
+            <!-- Background color -->
+            <div class="card-up indigo lighten-1"></div>
+
+
+            <!-- Avatar -->
+            <div class="avatar mx-auto white view overlay">
+                <img src="/<%=frnd.imageUrl%>" class="rounded-circle myAvatar" alt="woman avatar">
+
+            </div>
+            <!-- Content -->
+            <div class="card-body mx-2">
+                <!-- Name -->
+                <h4 class="card-title"><%=frnd.name%></h4>
+                <div class="text-muted"><%=frnd.About%></div>
+                <div class="text-muted mb-2">
+                    <span id="profile-view-online"><i class="fas fa-circle green-text fa-xs " id="activeColor">
+                        </i><span id="lastSeen-frnd"><%=frnd.lastSeen%></span></span>
+                </div>
+                <%if(userId!=frnd._id){%>
+                <div><form action="/sendreq?userId=<%=userId%>" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="senderId" value="<%=userId%>">
+                    <input type="hidden" name="reciverId" value="<%=frnd._id%>">
+                    <button class="btn btn-sm btn-primary btn-rounded waves-effect" type="submit"><i class="fas fa-user-plus"></i>
+                    </button>
+                </form>
+                    
+                    <a href="/getMassages/<%=frnd._id%>?userId=<%=userId%>"> <button class="btn btn-sm btn-primary btn-rounded waves-effect"><i class="fas fa-envelope"></i> 
+                    </button></a>
+                    <!-- <span class="dropdown">
+                        <a class="btn btn-sm btn-primary btn-rounded waves-effect" type="button" id="dropdownMenu3"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                class="fas fa-ellipsis-h "></i>
+                        </a>
+                        <span class="dropdown-menu mr-4" aria-labelledby="dropdownMenu3">
+                            <a class="dropdown-item" href="#">Copy Link</a>
+                            <a class="dropdown-item" href="#">Block User</a>
+                            <a class="dropdown-item" href="#">Report Profile</a>
+                        </span> 
+                    </span> -->
+                </div>
+                <%}%>
+                <hr>
+                <div class="row text-muted">
+                    <div class="col-md-4">
+                        <strong>Posts</strong>
+                        <div><%=frnd.timeline.length%></div>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Friends</strong>
+                        <div><%=frnd.friends.friendsId.length%></div>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>timeline</strong>
+                        <div><%=frnd.timeline.length%></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Card Dashboard-->
+
+
+        <div class="row px-2">
+            <div class="col-sm-8 p-0">
+                <div class="card m-2">
+                    <div class="card-header">Infomation</div>
+                    <div class="card-body pl-5">
+
+
+                        <div class="row mb-2">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            <div class="col col-sm-4">Email:</div>
+                            <div class="col col-sm-6"><%=frnd.email%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-chalkboard-teacher fa-fw"></i>
+                            <div class="col col-sm-4">Profession:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutProfession%></div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <i class="fas fa-building fa-fw"></i>
+                            <div class="col col-sm-4">Company:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutWorkPlaceCampanyName%>,
+                                <%=frnd.AboutWorkPlaceCampanyPosition%>, <%=frnd.AboutWorkPlaceCampanyCity%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-school fa-fw"></i>
+                            <div class="col col-sm-4">High School:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutCollegeCollegeHighSchool%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-university fa-fw"></i>
+                            <div class="col col-sm-4">College:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutCollegeCollegeName%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-graduation-cap fa-fw"></i>
+                            <div class="col col-sm-4">Graduation:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutCollegeGraduationIn%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-city fa-fw"></i>
+                            <div class="col col-sm-4">Current City:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutCity%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-home fa-fw"></i>
+                            <div class="col col-sm-4">Home Town:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutHomeTown%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-mobile fa-fw"></i>
+                            <div class="col col-sm-4">Mobile No:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutMobileNumber%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-birthday-cake fa-fw"></i>
+                            <div class="col col-sm-4">Birthday:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutDateofBith%></div>
+                        </div>
+                        <div class="row mb-2">
+                            <i class="fas fa-heart fa-fw"></i>
+                            <div class="col col-sm-4">Relationship:</div>
+                            <div class="col col-sm-6"><%=frnd.AboutRelationshipStatus%></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- news feed posts  -->
+                <ul class="list-unstyled mt-0">
+                    <%frnd.timeline.forEach(element => {%>
+                    <%if(element[0]!="$2a$12$y2zXdKow.MQn/HUE2RnIS.12CMzooEtKCs4i/cUTndZ6nT8OkiR96 Much"){%>
+                    <li class="m-2">
+
+
+                        <div class="card">
+                            <div class="card-header white d-flex">
+                                <img class="post-avatar myAvatar rounded-circle align-self-center mr-2 z-depth-1"
+                                    src="/<%=frnd.imageUrl%>" alt="avatar">
+
+                                <div class="ml-2 my-auto">
+                                    <strong><%=frnd.name%></strong><br>
+                                </div>
+
+                                <!-- more button -->
+
+                                <!-- <div class="dropdown ml-auto my-auto">
+                                    <a class="p-3" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu mr-4" aria-labelledby="dropdownMenu3">
+
+                                        <a class="dropdown-item" href="#">Copy Link</a>
+                                        <a class="dropdown-item" href="#">Hide Post</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+
+                            <div class="face front">
+
+                                <div class="card-body">
+                                    <!-- post body  -->
+                                    <p class="card-text">
+                                        <%if(element[1]!="$2a$12$y2zXdKow.MQn/HUE2RnIS.12CMzooEtKCs4i/cUTndZ6nT8OkiR96 Much"){%>
+                                        <%=element[1]%><%}%>
+                                    </p>
+                                    <!-- post image if has  -->
+                                    <div class="text-center">
+                                        <img class="img-fluid" src="/<%=element[0]%>" alt="">
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-mute btn-group-sm justify-content-between d-flex">
+                                <button class="btn btn-link"><i class="far fa-thumbs-up  mr-1"></i>Like</button>
+                                <button class="btn btn-link"><i class="far fa-comment-dots mr-1"></i>Comment</button>
+                                <button class="btn btn-link"><i class="fas fa-share mr-1"></i>Share</button>
+                            </div>
+                            <!-- comments -->
+                            <div class="d-flex p-2 ml-2 md-form ">
+                                <img class="comment-avatar myAvatar rounded-circle align-self-center mr-2 z-depth-1"
+                                    src="/<%=frnd.imageUrl%>" alt="avatar">
+                                <!-- <form action="" method="post" class="md-form d-flex w-100 "> -->
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="text" class=" w-100 mr-2" placeholder="Type your comment">
+                                <button class="btn btn-link btn-sm" title="Post"><svg fill="#009da0" height="24"
+                                        viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        class="feather feather-user-plus">
+                                        <path
+                                            d="M3.741 1.408l18.462 10.154a.5.5 0 0 1 0 .876L3.741 22.592A.5.5 0 0 1 3 22.154V1.846a.5.5 0 0 1 .741-.438zM5 13v6.617L18.85 12 5 4.383V11h5v2H5z">
+                                        </path>
+                                    </svg></button>
+                                <!-- </form> -->
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <%}else{%>
+                    <li class="m-2">
+
+                        <div class="card">
+                            <div class="card-header white d-flex">
+                                <img class="post-avatar myAvatar rounded-circle align-self-center mr-2 z-depth-1"
+                                    src="/<%=frnd.imageUrl%>" alt="avatar">
+
+                                <div class="ml-2 my-auto">
+                                    <strong><%=frnd.name%></strong><br>
+                                </div>
+
+                                <!-- more button -->
+
+                                <div class="dropdown ml-auto my-auto">
+                                    <a class="p-3" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu mr-4" aria-labelledby="dropdownMenu3">
+
+                                        <a class="dropdown-item" href="#">Copy Link</a>
+                                        <a class="dropdown-item" href="#">Hide Post</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="face front">
+
+                                <div class="card-body">
+                                    <!-- post body  -->
+                                    <p class="card-text"><%=element[1]%>
+                                    </p>
+                                    <!-- post image if has  -->
+                                    <div class="text-center">
+                                        <!-- <img class="img-fluid" src="/img/1.jfif" alt=""> -->
+                                    </div>
+
+                                </div>
+                                <div class="card-footer text-mute btn-group-sm justify-content-between d-flex">
+                                    <button class="btn btn-link"><i class="far fa-thumbs-up  mr-1"></i>Like</button>
+                                    <button class="btn btn-link"><i
+                                            class="far fa-comment-dots mr-1"></i>Comment</button>
+                                    <button class="btn btn-link"><i class="fas fa-share mr-1"></i>Share</button>
+                                </div>
+                                <!-- comments -->
+                                <div class="d-flex p-2 ml-2 md-form ">
+                                    <img class="comment-avatar myAvatar rounded-circle align-self-center mr-2 z-depth-1"
+                                        src="/<%=frnd.imageUrl%>" alt="avatar">
+                                    <!-- <form action="" method="post" class="md-form d-flex w-100 "> -->
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="text" class=" w-100 mr-2" placeholder="Type your comment">
+                                    <button class="btn btn-link btn-sm" title="Post"><svg fill="#009da0" height="24"
+                                            viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"
+                                            class="feather feather-user-plus">
+                                            <path
+                                                d="M3.741 1.408l18.462 10.154a.5.5 0 0 1 0 .876L3.741 22.592A.5.5 0 0 1 3 22.154V1.846a.5.5 0 0 1 .741-.438zM5 13v6.617L18.85 12 5 4.383V11h5v2H5z">
+                                            </path>
+                                        </svg></button>
+                                    <!-- </form> -->
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <%}%>
+                
+            <%});%>
+
+
+                </ul>
+                <!-- .news feed posts -->
+
+
+            </div>
+            <div class="col-sm-4 p-0">
+                <!-- friends  -->
+                <div class="card m-2">
+                    <div class="card-header">Friends <span class="text-muted"><%=frnd.friends.friendsId.length%></span>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-unstyled m-2 pl-2" id="">
+                            <%suggestfriends.forEach(element => {%>
+                            <li id="user6" class="d-flex mb-2">
+                                <a href="/openfrndProfile/<%=element._id%>?userId=<%=userId%>"><img
+                                        src="/<%=element.imageUrl%>" alt="avatar"
+                                        class="status-avatar myAvatar rounded-circle align-self-center mr-3 z-depth-1"></a>
+                                <div>
+                                    <a href="/openfrndProfile/<%=element._id%>?userId=<%=userId%>"
+                                        id="id4jQuery"><strong><%=element.name%></strong>
+                                        <p class="last-message text-muted mb-0">
+                                            <%=element.AboutProfession%></p>
+                                    </a>
+                                    <form action="/sendreq?userId=<%=userId%>" method="POST">
+                                        <input type="hidden" name="reciverId" value="<%=element._id%>">
+                                        <input type="hidden" name="senderId" value=<%=userId%>>
+                                        <button class="btn btn-sm btn-primary btn-rounded waves-effect ml-0 send-req"
+                                            type="submit">Send Request</button>
+
+                                    </form>
+
+                                </div>
+                            </li>
+                            <%});%>
+                            <div class="card-header">Comman Friends <span
+                                    class="text-muted"><%=CommanFrnd.length%></span></div><br>
+                            <%CommanFrnd.forEach(element => {%>
+                            <li id="user6" class="d-flex mb-2">
+                                <a href="/openfrndProfile/<%=element._id%>?userId=<%=userId%>"><img
+                                        src="/<%=element.imageUrl%>" alt="avatar"
+                                        class="status-avatar myAvatar rounded-circle align-self-center mr-3 z-depth-1"></a>
+                                <div>
+                                    <a href="/openfrndProfile/<%=element._id%>?userId=<%=userId%>"><strong><%if(userId!=element._id){%><%=element.name%>%><%}else{%>You<%}%></strong>
+                                    <p class="last-message text-muted mb-0">
+                                        <%=element.AboutProfession%></p>
+                                    </a>
+
+                                </div>
+                            </li>
+                            <%});%>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- .friends -->
+
+                <!-- photos -->
+                <!-- <div class="card m-2">
+            <div class="card-header">Photos <span class="text-muted">(15)</span></div>
+            <div class="card-body p-0">
+                <ul class="list-unstyled m-2 pl-2" id="">
+                    
+                    <li id="user6" class="d-flex mb-2">
+                       
+                    </li>
+                    
+                </ul>
+            </div>
+          </div> -->
+                <!-- .photos  -->
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        a = document.getElementById("lastSeen-frnd").innerText;
+        b = new Date().getTime()
+        a = new Date(a).getTime()
+        var timeDiff = Math.abs(a - b)
+        delta = timeDiff / 1000;
+
+        // days difference
+        var days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+
+        // calculate (and subtract) whole hours
+        var hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+
+        // calculate (and subtract) whole minutes
+        var minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+        if (days) {
+            document.getElementById("lastSeen-frnd").innerText = " Active " + days + " days ago";
+            document.getElementById("activeColor").className = "fas fa-circle red-text fa-xs"
+        } else if (hours) {
+            document.getElementById("lastSeen-frnd").innerText = " Active " + hours + " hours ago";
+            document.getElementById("activeColor").className = "fas fa-circle red-text fa-xs"
+
+        } else if (minutes) {
+            document.getElementById("lastSeen-frnd").innerText = " Active " + minutes + " minutes ago";
+            document.getElementById("activeColor").className = "fas fa-circle purple-text fa-xs"
+
+        } else {
+            document.getElementById("lastSeen-frnd").innerText = "Active Now";
+        }
+    </script>
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/mdb.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/main.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
