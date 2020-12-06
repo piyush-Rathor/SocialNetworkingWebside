@@ -5,12 +5,12 @@ const User = require('../models/User');
 const nodemailer = require('nodemailer'); //import nodemailer to send mails to varify
 
 const transporter = nodemailer.createTransport({ //transporter bnaya using nodemailer 
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    // user: 'psrathor16072000@gmail.com',
-    // pass: 'Piyush*123'
-      user: 'abhineetbbk2016@gmail.com',
-      pass: 'abhineetbbk'
+      user: '****@gmail.com',
+      pass: '******'
   }
 });
 
@@ -33,7 +33,7 @@ exports.postSignUp = (req, res, next) => {
         return res.send("<h1>You Have allready Account</h1>")
       }
       var mailOptions = {
-        from: 'abhineetbbk2016@gmail.com',
+        from: '****@gmail.com',
         to: email,
         subject: 'Sending Email Using Gmail',
         html: `<p>Hey Dude<br>Thanks for Sign Up</p>
