@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({ //transporter bnaya using nodem
     // user: 'psrathor16072000@gmail.com',
     // pass: 'Piyush*123'
       user: 'abhineetbbk2016@gmail.com',
-      pass: 'Abhineetbbk'
+      pass: 'abhineetbbk'
   }
 });
 
