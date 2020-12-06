@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/pagelogin/:page', LoginController.getlogin);
 
-router.get('/Login', LoginController.getLogin);
+router.get('/', LoginController.getLogin);
 
 router.get('/LogoutAccount', LoginController.LogoutAccount);
 
