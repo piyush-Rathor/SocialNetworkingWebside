@@ -3,16 +3,18 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 const nodemailer = require('nodemailer'); //import nodemailer to send mails to varify
+const SMTPTransport = require('nodemailer/lib/smtp-transport');
 
-const transporter = nodemailer.createTransport({ //transporter bnaya using nodemailer 
+const transporter = nodemailer.createTransport(smtpTransport({ //transporter bnaya using nodemailer 
   service: 'gmail',
+  host: 'smtp.gmail.com',
   auth: {
     // user: 'psrathor16072000@gmail.com',
     // pass: 'Piyush*123'
       user: 'abhineetbbk2016@gmail.com',
       pass: 'abhineetbbk'
   }
-});
+}));
 
 
 exports.postSignUp = (req, res, next) => {
