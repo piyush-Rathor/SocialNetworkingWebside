@@ -187,7 +187,6 @@ $('.fr-accept').click(function (e) {
     e = e.currentTarget;
     // Send request to server for friend accept
 
-
     $.ajax({
         type: "POST",
         url: "/acceptReq?userId=" + userID,
@@ -228,7 +227,8 @@ $('.fr-cancel').click(function (e) {
         url: "/cancleReq?userId=" + userId_1,
         data: {
             reqsenderId: $(e).val(),
-            accepterId: uid
+            accepterId: uid,
+            _csrf: csrf
         },
         success: function (result) {
             //alert('ok');

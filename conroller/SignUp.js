@@ -20,7 +20,7 @@ exports.postSignUp = (req, res, next) => {
   const password = req.body.signUpPassword;
   const confirmPassword = req.body.confirmPassword;
   if (password != confirmPassword) {
-    return res.rend("<h1>Your Password and Confirm Password did not match")
+    return res.rend("<h1>Your Password and Confirm Password did not match</h1>")
   }
 
   User.findOne({
