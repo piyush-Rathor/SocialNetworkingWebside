@@ -98,6 +98,16 @@
     width: 20.5rem;
   }
 }
+@media (max-width: 420px){
+  .chat-room.small-chat{
+    width: 80vw;
+  }
+}
+@media (max-width: 320px){
+  .chat-room.small-chat{
+    width: 97vw;
+  }
+}
 
 .chat-room.small-chat.slim {
   height: 3rem;

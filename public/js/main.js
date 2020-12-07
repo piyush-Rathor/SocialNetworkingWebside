@@ -280,7 +280,7 @@ $('.send-req').click(function (e) {
 
 });
 
-$('#openProfile').click(function (e) {
+$('.openProfile').click(function (e) {
     $('#news-feed').css('display', 'none');
     $('#profile-section').css('display', '');
     //    document.getElementById("profile-section").hidden = "";
@@ -460,20 +460,17 @@ $('.myAvatar').each(function () {
 });
 
 function testimage(URL, e) {
-    var tester = new Image();
+    let tester = new Image();
     tester.onerror = function () {
-        if(e)
-            $(e).attr('src', '/images/profile.png');
-        else
-            return false;
+        $(e).attr('src', '/images/profile.png');
     };
     tester.src = URL;
-    return true;
 }
 
 // search Event Handing 
 $('#searchEvent').on('keyup', function (){
     let q = $(this).val();
+    let id = 1000;
     if (q.length > 2) {
         $('#searchResultDropdown').show();
         // send req to server 
@@ -490,13 +487,10 @@ $('#searchEvent').on('keyup', function (){
                 $('#searchResults').html('');
                 
                 result.forEach(res =>{
-                    if(!testimage(res.imageUrl, null)){
-                        res.imageUrl = 'images/profile.png';
-                    }
 
                     let text = 
                         `<li class="d-flex mb-2">
-                        <img src="/${res.imageUrl}" alt="avatar"
+                        <img src="/${res.imageUrl}" alt="avatar" id=${id} 
                             class="myAvatar comment-avatar rounded-circle align-self-center mr-3 z-depth-1">
                         <div>
                             <a href="/openfrndProfile/${res._id}?userId=${userID}" class="blue-text h6 p-0">${res.name}
@@ -506,6 +500,8 @@ $('#searchEvent').on('keyup', function (){
                         </div>
                     </li>`
                     $('#searchResults').append(text);
+                    testimage(res.imageUrl, $('#'+id));
+                    id++;
                 });
             },
             error: function (result) {
