@@ -121,12 +121,12 @@
                                 class="clearfix d-none d-sm-inline-block">Chats</span></a>
                     </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" onclick="friendReq()"><i class="fas fa-user-friends"></i> <span
+                    <a class="nav-link d-none" onclick="friendReq()"><i class="fas fa-user-friends"></i> <span
                             class="clearfix d-none d-sm-inline-block">Friend Requests</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="openProfile"><i class="fas fa-user"></i> <span
-                            class="clearfix d-none d-sm-inline-block">Profile</span></a>
+                    <a class="nav-link d-none openProfile"><i class="fas fa-user"></i> <span
+                            class="clearfix d-none  d-sm-inline-block">Profile</span></a>
                 </li>
 
                 <li class="nav-item avatar dropdown">
@@ -136,6 +136,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                         aria-labelledby="navbarDropdownMenuLink-55">
+                        <a class="dropdown-item" onclick="friendReq()">Friend Request</a>
+                        <a class="dropdown-item openProfile" >Profile</a>
                         <a class="dropdown-item" href="/LogoutAccount">Logout</a>
                     </div>
                 </li>
@@ -333,7 +335,7 @@
                                     <form action="/like/<%=Feed._id%>?userId=<%=userId%>" method="POST">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" name="userIdforlike" value="<%=userId%>">
-                            <button class="btn btn-link btn-like">
+                            <button class="btn btn-link btn-like px-0">
                                 <%i=0%>
                                 <%Feed.Likers.forEach(element => {
                                                 if(element.toString()==userId.toString()){
@@ -350,14 +352,14 @@
                                     </form>
                                     <form action="/commentArray/<%=Feed._id%>?userId=<%=userId%>" method="POST">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="btn btn-link btn-comment" data-toggle="collapse"
+                                <button class="btn btn-link btn-comment px-0" data-toggle="collapse"
                                     data-target="#comment-<%=Feed._id%>" aria-expanded="false"
                                     aria-controls="comment-<%=Feed._id%>"><i
                                         class="far fa-comment-dots mr-1"></i>Comment</button>
                                 </form>
                                 <form action="/shareLink/<%=Feed._id%>?userId=<%=userId%>" method="POST">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn btn-link btn-share"><i
+                                    <button class="btn btn-link btn-share px-0"><i
                                             class="fas fa-share mr-1"></i>Share</button>
                                 </form>
                         </div>
@@ -1109,7 +1111,25 @@
                 <div class="tab-pane fade" id="settings-classic-shadow" role="tabpanel"
                     aria-labelledby="settings-tab-classic-shadow">
                     <div class="row">
-                        <div id="settingsFormView" class="col col-sm-8">
+                        <div class="col-sm-4">
+                            <ul class="list-unstyled">
+                                <li class="list-item">
+                                    <a class="" id="settingGeneral"><i class="fas fa-envelope blue-text fa-fw"></i>
+                                        Change Email</a>
+                                </li>
+                                <li class="list-item">
+                                    <a class="" id="settingChangePassword"><i
+                                            class="fas fa-lock fa-fw text-warning"></i>
+                                        Change Password</a>
+                                </li>
+                                <li class="list-item">
+                                    <a class="" id="settingDeleteAccount"><i class="fas fa-trash fa-fw red-text"></i>
+                                        Delete Account</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div id="settingsFormView" class="col-sm-8">
 
                             <form class="text-center border border-light p-5"
                                 action="/changeEmailProfile?userId=<%=userId%>" method="POST" target="POST"
@@ -1170,24 +1190,7 @@
                             </form>
 
                         </div>
-                        <div class="col col-sm-4">
-                            <ul class="list-unstyled">
-                                <li class="list-item">
-                                    <a class="" id="settingGeneral"><i class="fas fa-envelope blue-text fa-fw"></i>
-                                        Change Email</a>
-                                </li>
-                                <li class="list-item">
-                                    <a class="" id="settingChangePassword"><i
-                                            class="fas fa-lock fa-fw text-warning"></i>
-                                        Change Password</a>
-                                </li>
-                                <li class="list-item">
-                                    <a class="" id="settingDeleteAccount"><i class="fas fa-trash fa-fw red-text"></i>
-                                        Delete Account</a>
-                                </li>
-                            </ul>
-
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -1239,7 +1242,7 @@
                     <div class="media mb-3">
                         <%if(chattingMode){if(!chat){%>
                       <img
-                        class=" myAvatar d-flex rounded mr-2" src="/<%if(chattingMode){%><%=chatter.imageUrl%><%}%>" height="65px"
+                        class="myAvatar status-avatar d-flex rounded mr-2" src="/<%if(chattingMode){%><%=chatter.imageUrl%><%}%>"
                         alt="Generic placeholder image" / >
                       <div class="media-body">
                         <p class="my-0">You're friends on iConnect</p>
@@ -1273,7 +1276,7 @@
                             <%if(isAvatarReq){
                                              isAvatarReq=false;
                                              %>
-                            <img src="/<%if(chattingMode){%><%=chatter.imageUrl%><%}else{%><%=user.imageUrl%><%}%>" alt="avatar" class="myAvatar rounded-circle mr-2 ml-0 " width="38px"/>
+                            <img src="/<%if(chattingMode){%><%=chatter.imageUrl%><%}else{%><%=user.imageUrl%><%}%>" alt="avatar" class="myAvatar rounded-circle mr-2 ml-0 " width="38px" height="38px"/>
                                         <%}%>
                                       </div>
                                       <div class=" card bg-light rounded z-depth-0 mb-1 message-text">
@@ -1408,7 +1411,10 @@
 
                 <!-- friend request  -->
                 <div id="friend-req" class="card friend-requests scrollbar-light-blue p-1" hidden="true">
-                    <h5 class="card-header white">People Sends You Requests </h5>
+                    <div class="card-header white pr-1 d-flex">
+                        <h5 class="">People Sends You Requests </h5>
+                        <a class="ml-auto text-muted px-2" onclick="friendReq()"><i class="fas fa-times"></i></a>
+                    </div>
                     <ul class="list-unstyled m-2 pl-2" id="">
                         <%if(frndUser[0]!=undefined){%>
                         <% frndUser.forEach(sender=>{%>
@@ -1431,7 +1437,8 @@
                         </li>
                         <%})}%>
                     </ul>
-                    <h5 class="card-header white">Suggest for You </h5>
+                    <h5 class="card-header white">Suggest for You</h5>
+                    
                     <ul class="list-unstyled m-2 pl-2" id="">
                         <%if(allUser[0]!=undefined){%>
                         <% allUser.forEach(user=>{if(user._id.toString()!=userId.toString()){%>

@@ -1,4 +1,5 @@
 const express = require("express");
+const port = process.env.PORT || 8000
 
 const bodyParser = require("body-parser");
 const multer = require("multer");
@@ -115,7 +116,7 @@ mongoose
   .connect(MONGODB_URI) //mongoose database connect ho jaye
   .then((result) => {
     //than tab hi server on ho
-    app.listen(8000);
+    app.listen(port);
   })
   .catch((err) => {
     console.log(err);

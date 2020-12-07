@@ -83,7 +83,7 @@ exports.sentFrndReq=((req,res,next)=>{
             user.save();
             return userSender.save();
          }).then(result=>{
-            res.redirect('/login#');
+            return res.status(200).send("You are now friend");
          }).catch(err=>{
              console.log(err);
          })

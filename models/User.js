@@ -35,7 +35,7 @@ const userSchema = new Schema({
   },
   AboutProfession: {
     type: String,
-    default: "Webside User"
+    default: "Website User"
   },
   AboutWorkPlaceCampanyName: {
     type: String,

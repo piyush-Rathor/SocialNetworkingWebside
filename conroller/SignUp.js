@@ -5,10 +5,12 @@ const User = require('../models/User');
 const nodemailer = require('nodemailer'); //import nodemailer to send mails to varify
 
 const transporter = nodemailer.createTransport({ //transporter bnaya using nodemailer 
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: 'psrathor16072000@gmail.com',
-    pass: 'Piyush*123'
+      user: '****@gmail.com',
+      pass: '******'
   }
 });
 
@@ -20,7 +22,7 @@ exports.postSignUp = (req, res, next) => {
   const password = req.body.signUpPassword;
   const confirmPassword = req.body.confirmPassword;
   if (password != confirmPassword) {
-    return res.rend("<h1>Your Password and Confirm Password did not match")
+    return res.rend("<h1>Your Password and Confirm Password did not match</h1>")
   }
 
   User.findOne({
@@ -31,11 +33,11 @@ exports.postSignUp = (req, res, next) => {
         return res.send("<h1>You Have allready Account</h1>")
       }
       var mailOptions = {
-        from: 'psrathor16072000@gmail.com',
+        from: '****@gmail.com',
         to: email,
         subject: 'Sending Email Using Gmail',
-        html: `<p>hey dude</p>
-            <h4>You Gonna SignIn On ChatBox....</h4>
+        html: `<p>Hey Dude<br>Thanks for Sign Up</p>
+            <h4>You Gonna Sign in On ChatBox....</h4>
             <p>Your OTP is </p>
             <h1>${val}</h1>`
       }
